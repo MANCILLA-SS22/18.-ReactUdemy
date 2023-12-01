@@ -4,7 +4,7 @@ import { uiActions } from "./ui-slice";
 export function fetchCartData(){
     return async function(dispatch){
         async function fetchData(){
-            const response = await fetch('https://react-http-6b4a6.firebaseio.com/cart.json');
+            const response = await fetch('https://redux-c54d2-default-rtdb.firebaseio.com/cart.json');
 
             if (!response.ok) throw new Error('Could not fetch cart data!')
             const data = await response.json();
@@ -43,14 +43,14 @@ export function sentCartData(cart){
         dispatch(uiActions.showNotification({
             status: "pending",
             title: "Sending...",
-            message: "Sending cart successfully!"
+            message: "Sending cart data!"
         }));
 
         try {
             await sendRequest();
             dispatch(uiActions.showNotification({
-                status: "pending",
-                title: "Sending...",
+                status: "success",
+                title: "Success!",
                 message: "Sending cart successfully!"
             }));
 

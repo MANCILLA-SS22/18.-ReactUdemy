@@ -2,10 +2,9 @@ import { Fragment, useEffect } from 'react';
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
-import { useSelector, useDispatch } from 'react-redux';
 import Notification from './components/UI/Notification';
-import { sentCartData } from './store/cart-slice';
-import { fetchCartData } from './store/cart-actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCartData, sentCartData } from './store/cart-actions';
 
 let isInitial = true;
 
@@ -26,10 +25,9 @@ function App() {
     }
 
     if(cart.changed){
-      dispatch(fetchCartData());
+      dispatch(sentCartData(cart));
     }
-
-    dispatch(sentCartData(cart));
+    
   },[cart, dispatch]);
 
   return (
